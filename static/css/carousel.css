@@ -1,0 +1,139 @@
+/* Carousel Section */
+.carousel-section {
+    padding: 2rem 0;
+    /* Reduced padding for cleaner look */
+    overflow: hidden;
+    background: #000;
+}
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Optional: Limit max width if screen is huge, but 'netflix' usually full width */
+}
+
+/* Gradient Fade for Edges */
+.carousel-container::before,
+.carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    /* Bit narrower */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, #0a0a0a, transparent);
+}
+
+.carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, #0a0a0a, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    /* Smaller gap */
+    width: max-content;
+    /* Move to the RIGHT: Start from -50% and go to 0% */
+    transform: translateX(-50%);
+    animation: scroll-right 30s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+.carousel-item {
+    position: relative;
+    /* 2 items per view. 
+       Calculation: 100vw total. 2 items => 50vw each. 
+       Subtract gap/padding adjustments. 
+       Let's use slight less than 50vw to ensure 2 are clearly fully visible or just 50vw.
+       If we want exactly 2 full items visible, we need to account for container width.
+    */
+    width: 48vw;
+    height: 28vw;
+    /* Fixed aspect ratio (approx 16:9 relative to width) */
+    max-height: 500px;
+    /* Cap height on large screens */
+    flex-shrink: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+    /* Prepare for border hover */
+}
+
+.carousel-item:hover {
+    z-index: 10;
+    border-color: var(--accent);
+    /* Scale effect slightly reduced to avoid layout shift issues if too big */
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures standardised proportions */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Gradient Overlay & Text */
+.carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Full overlay for better text contrast if needed, or stick to bottom gradient */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4) 40%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.carousel-title {
+    font-size: 2rem;
+    /* Much larger text */
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.carousel-price {
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

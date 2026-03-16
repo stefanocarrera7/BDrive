@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Catalogo {% if current_category == 'RENT' %}Noleggio{% elif current_category == 'SALE' %}Vendita{% else
+            %}Completo{% endif %}</h1>
+        <div class="filters">
+            <a href="?category=RENT"
+                class="filter-btn {% if current_category == 'RENT' %}active{% endif %}">Noleggio</a>
+            <a href="?category=SALE" class="filter-btn {% if current_category == 'SALE' %}active{% endif %}">Vendita</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="car-grid">
+            {% for car in cars %}
+            {% include 'showroom/partials/car_card.html' %}
+            {% empty %}
+            <p>Nessuna auto disponibile al momento.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

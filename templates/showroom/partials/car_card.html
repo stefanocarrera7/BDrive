@@ -1,0 +1,21 @@
+<div class="car-card">
+    <div class="car-image-container">
+        {% if car.image %}
+        <img src="{{ car.image.url }}" alt="{{ car.title }}">
+        {% else %}
+        <div class="placeholder-image">No Image</div>
+        {% endif %}
+    </div>
+    <div class="car-info">
+        <h3>{{ car.title }}</h3>
+        <p class="price-label">A partire da</p>
+        <p class="price-value">
+            € {{ car.price|floatformat:0 }}
+            {% if car.category == 'RENT' %}
+            <span style="font-size: 1rem; color: #ccc; font-weight: normal; text-transform: lowercase;">/ mese</span>
+            {% endif %}
+        </p>
+
+        <a href="{% url 'showroom:detail' car.slug %}" class="btn btn-outline btn-sm">Dettagli</a>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+HOME:
+- Tasto preventivo gratuito
+- carosello che scorre lentamente automaticamente, tranne nel caso in cui il cursore ci finisca sopra, in quel caso si ferma e l'immagine si ingrandisce leggermente
+- sistemare schermata contatti: in questo momentonon funziona, riporta al catalogo. Nella sezione contati devono essere presenti i link a instagram, telefono e mail
+- DGA sito si esempio
+
+TASTO PREVENTIVO GRATUITO:
+- Nome e Cognome
+- Email
+- Telefono
+- Data di nascita
+- Km annui
+- Quando possiamo contattarti
+

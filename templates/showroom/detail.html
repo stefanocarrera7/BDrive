@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section detail-section">
+    <div class="container detail-container">
+        <div class="detail-image">
+            {% if car.image %}
+            <img src="{{ car.image.url }}" alt="{{ car.title }}">
+            {% endif %}
+        </div>
+        <div class="detail-info">
+            <h1>{{ car.title }}</h1>
+            <div class="detail-price">
+                <span class="label">Prezzo:</span>
+                <span class="value">€ {{ car.price|floatformat:2 }}</span>
+                {% if car.category == 'RENT' %}<span class="period">/ mese</span>{% endif %}
+            </div>
+
+            <div class="specs-box">
+                <h3>Specifiche Tecniche</h3>
+                <p>{{ specs|linebreaks }}</p>
+            </div>
+
+            <div class="cta-box">
+                <button class="btn btn-primary btn-lg" id="openContactModalBtn">MI INTERESSA</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Preference Modal -->
+<div id="contactModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" id="closeContactModalBtn">&times;</button>
+        <h2>Come preferisci essere contattato?</h2>
+        <p class="modal-subtitle">Scegli il metodo che ti è più comodo per ricevere informazioni su <strong>{{ car.title
+                }}</strong>.</p>
+
+        <div class="contact-options">
+            <a href="https://wa.me/393319079619?text=Salve,%20vorrei%20maggiori%20informazioni%20sull'auto%20{{ car.title }}%20(Rif.%20Sito%20Web)"
+                target="_blank" class="contact-option btn-whatsapp">
+                <div class="option-icon">💬</div>
+                <div class="option-text">
+                    <strong>WhatsApp</strong>
+                    <span>Risposta rapida</span>
+                </div>
+            </a>
+
+            <a href="mailto:info@bdrive.it?subject=Richiesta informazioni: {{ car.title }}&body=Salve, vorrei avere maggiori dettagli e un preventivo per l'auto {{ car.title }}."
+                class="contact-option btn-email">
+                <div class="option-icon">✉️</div>
+                <div class="option-text">
+                    <strong>Email</strong>
+                    <span>Ricevi un preventivo scritto</span>
+                </div>
+            </a>
+
+            <a href="tel:+393319079619" class="contact-option btn-phone">
+                <div class="option-icon">📞</div>
+                <div class="option-text">
+                    <strong>Telefono</strong>
+                    <span>Parla subito con noi</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('contactModal');
+        const openBtn = document.getElementById('openContactModalBtn');
+        const closeBtn = document.getElementById('closeContactModalBtn');
+
+        // Open modal
+        if (openBtn && modal) {
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // prevent scrolling background
+            });
+        }
+
+        // Close modal via button
+        if (closeBtn && modal) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close modal clicking outside
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BDrive{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="{% url 'showroom:home' %}" class="logo">BDRIVE</a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="{% url 'showroom:home' %}">Home</a>
+                <a href="{% url 'showroom:catalog' %}?category=RENT">Noleggio</a>
+                <a href="{% url 'showroom:catalog' %}?category=SALE">Vendita</a>
+                <a href="{% url 'showroom:contacts' %}">Contatti</a>
+            </nav>
+            <div class="header-actions">
+                <a href="{% url 'showroom:contacts' %}" class="btn btn-primary">Preventivo Gratuito</a>
+                <a href="{% url 'showroom:catalog' %}?category=RENT" class="btn btn-outline">Noleggio</a>
+                <a href="{% url 'showroom:catalog' %}?category=SALE" class="btn btn-outline">Acquisto</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer id="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>BDRIVE</h3>
+                <p>Noleggia o Acquista la tua prossima auto</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contatti</h4>
+                <p>+39 331 907 9619</p>
+                <p>info@bdrive.it</p>
+                <p>Via Torino 1, Chivasso (TO)</p>
+            </div>
+            <div class="footer-col">
+                <h4>Social</h4>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BDrive. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mainNav = document.getElementById('mainNav');
+
+            if (mobileBtn && mainNav) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileBtn.classList.toggle('active');
+                    mainNav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="page-header">
+            <h1>Contattaci</h1>
+            <p class="hero-subtitle">Siamo qui per aiutarti a trovare la tua prossima auto.</p>
+        </div>
+
+        <div class="contacts-grid">
+            <div class="contact-card">
+                <h3>Telefono</h3>
+                <p>Chiamaci per qualsiasi informazione.</p>
+                <a href="tel:+393319079619" class="contact-link">+39 331 907 9619</a>
+                <a href="tel:+393319079619" class="contact-link">+39 331 907 9619</a>
+            </div>
+
+            <div class="contact-card">
+                <h3>Email</h3>
+                <p>Scrivici, ti risponderemo il prima possibile.</p>
+                <a href="mailto:info@bdrive.it" class="contact-link">info@bdrive.it</a>
+            </div>
+
+            <div class="contact-card">
+                <h3>Instagram</h3>
+                <p>Seguici per scoprire le ultime novità.</p>
+                <a href="https://instagram.com" target="_blank" class="contact-link">@bdrive_service</a>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h3>Dove siamo</h3>
+            <p>Via Torino 1, Chivasso (TO)</p>
+            <!-- Placeholder for map if needed, for now just text/styling -->
+        </div>
+    </div>
+</section>
+
+<style>
+    .contacts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        margin-top: 2rem;
+    }
+
+    .contact-card {
+        background: var(--card-bg);
+        padding: 2.5rem;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        text-align: center;
+        transition: var(--transition);
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+    }
+
+    .contact-card h3 {
+        color: var(--accent);
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .contact-link {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-main);
+        text-decoration: none;
+        border-bottom: 2px solid var(--accent);
+    }
+
+    .contact-link:hover {
+        color: var(--accent);
+    }
+
+    .map-section {
+        margin-top: 5rem;
+        text-align: center;
+        padding: 3rem;
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+</style>
+{% endblock %}

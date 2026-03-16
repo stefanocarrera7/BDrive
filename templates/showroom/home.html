@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container">
+        <h1>
+            <span class="text-accent">Noleggia</span> o
+            <span class="text-accent">Acquista</span> la tua prossima auto
+        </h1>
+        <p class="hero-subtitle">Noleggio e vendita di auto per ogni viaggio quotidiano.</p>
+        <div class="hero-actions">
+            <a href="{% url 'showroom:catalog' %}?category=RENT" class="btn btn-primary">Vai al Catalogo Noleggio</a>
+            <a href="{% url 'showroom:catalog' %}?category=SALE" class="btn btn-outline">Vai al Catalogo Vendita</a>
+        </div>
+    </div>
+</section>
+
+
+{% if carousel_cars %}
+<section class="section carousel-section">
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <!-- First Set -->
+            {% for car in carousel_cars %}
+            <div class="carousel-item">
+                {% if car.image %}
+                <img src="{{ car.image.url }}" alt="{{ car.title }}">
+                {% else %}
+                <img src="https://placehold.co/600x400?text={{ car.title }}" alt="{{ car.title }}">
+                {% endif %}
+                <div class="carousel-overlay">
+                    <h3 class="carousel-title">{{ car.title }}</h3>
+                    <p class="carousel-price">€{{ car.price }}</p>
+                    {% if car.category == 'RENT' %}
+                    <p style="font-size: 1rem; color: #ccc; margin-top: -5px; text-transform: lowercase;">/ mese</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+            <!-- Duplicate Set for Infinite Scroll -->
+            {% for car in carousel_cars %}
+            <div class="carousel-item">
+                {% if car.image %}
+                <img src="{{ car.image.url }}" alt="{{ car.title }}">
+                {% else %}
+                <img src="https://placehold.co/600x400?text={{ car.title }}" alt="{{ car.title }}">
+                {% endif %}
+                <div class="carousel-overlay">
+                    <h3 class="carousel-title">{{ car.title }}</h3>
+                    <p class="carousel-price">€{{ car.price }}</p>
+                    {% if car.category == 'RENT' %}
+                    <p style="font-size: 1rem; color: #ccc; margin-top: -5px; text-transform: lowercase;">/ mese</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="section benefits-section">
+    <div class="container">
+        <h2>Perché sceglierci</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3>Kasko Inclusa</h3>
+                <p>Copertura totale per viaggiare senza pensieri.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Manutenzione</h3>
+                <p>Controlli regolari per la massima sicurezza.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Cambio Gomme</h3>
+                <p>Pneumatici adatti ad ogni stagione inclusi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if featured_cars %}
+<section class="section featured-section">
+    <div class="container">
+        <h2>In Evidenza</h2>
+        <div class="car-grid">
+            {% for car in featured_cars %}
+            {% include 'showroom/partials/car_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

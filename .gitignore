@@ -1,0 +1,22 @@
+# Ambiente virtuale
+venv/
+venv2/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database locale SQLite (importante non caricarlo se contiene dati sensibili/reali)
+db.sqlite3
+
+# File multimediali e statici caricati dagli utenti (opzionale, ma consigliato)
+media/
+
+# File di configurazione IDE (es. VS Code, PyCharm)
+.vscode/
+.idea/
+
+# File di ambiente
+.env

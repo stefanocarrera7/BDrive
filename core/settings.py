@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-vi_=4^$cgy+t^dg0c8jn4c5bv$+8f))5i2!)5i_n!xl+tsap93"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True # TEMP: messo a True per fixare l'errore 500 su Koyeb
 
 ALLOWED_HOSTS = ['*', 'bdrive.pythonanywhere.com', '127.0.0.1', 'localhost']
 
